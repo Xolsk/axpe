@@ -1,11 +1,21 @@
 import MeetupItem from "../components/meetups/MeetupItem";
 import classes from "./../components/meetups/MeetupList.module.css";
 import { useFetch } from "../util-hooks/useFetch";
+import { useViewContext } from "../contexts/ViewContext";
+import { useEffect } from "react";
 
 export default function MeetupsPage(props) {
   const { filterBy } = props;
-  console.log(filterBy, "ARRIBA");
   const { data, error, refetch } = useFetch("http://localhost:3001/meetups");
+  const { updateFavoriteCounter } = useViewContext();
+
+  useEffect(() => {
+    if (data !== null) {
+      updateFavoriteCounter(
+        data.filter((item) => item.favorited === true).length
+      );
+    }
+  }, [data]);
 
   if (error) {
     return <p>Oops something went wrong</p>;

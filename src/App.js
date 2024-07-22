@@ -1,28 +1,30 @@
 import MeetupsPage from "./pages/MeetupsPage";
-import FavoritesPage from "./pages/Favorites";
 import NewMeetupsPage from "./pages/NewMeetup";
 import MainNavigation from "./components/layout/MainNavigation";
 import Layout from "./components/layout/Layout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NEW_MEETUP_PAGE, FAVORITES_PAGE } from "./utils/constants";
+import { ViewContextProvider } from "./contexts/ViewContext";
 
 function App() {
   return (
     <BrowserRouter>
       <div data-test="app">
         <div>
-          <MainNavigation />
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<MeetupsPage />} />
-              <Route path={NEW_MEETUP_PAGE} element={<NewMeetupsPage />} />
-              <Route
-                path={FAVORITES_PAGE}
-                element={<MeetupsPage filterBy="favorited" />}
-              />
-              <Route path="*" element={<div>NOT FOUND</div>} />
-            </Route>
-          </Routes>
+          <ViewContextProvider>
+            <MainNavigation />
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<MeetupsPage />} />
+                <Route path={NEW_MEETUP_PAGE} element={<NewMeetupsPage />} />
+                <Route
+                  path={FAVORITES_PAGE}
+                  element={<MeetupsPage filterBy="favorited" />}
+                />
+                <Route path="*" element={<div>NOT FOUND</div>} />
+              </Route>
+            </Routes>
+          </ViewContextProvider>
         </div>
       </div>
     </BrowserRouter>

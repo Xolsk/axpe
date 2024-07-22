@@ -5,9 +5,11 @@ import {
 } from "./../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
+import { useViewContext } from "../../contexts/ViewContext";
 
 export default function MainNavigation() {
   const navigate = useNavigate();
+  const { favoriteCounter } = useViewContext();
   return (
     <header className={classes.header} data-test="navigation-header">
       <div className={classes.logo}>React Meetups</div>
@@ -27,7 +29,7 @@ export default function MainNavigation() {
           <li>
             <a href="#" onClick={() => navigate(FAVORITES_PAGE)}>
               My Favorites
-              <span className={classes.badge}>{0}</span>
+              <span className={classes.badge}>{favoriteCounter}</span>
             </a>
           </li>
         </ul>
