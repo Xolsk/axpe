@@ -1,3 +1,14 @@
+## ABOUT
+
+You can follow instructions below to run the app, after installing an dependencies of course.
+Some notes on the approach that has been taken.
+I've opted for a "no fuss, keep it simple and straightforward" approach. This means, simple, efficient solutions that dont
+mean doing everything from scratch, as many things should be improved
+
+-Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met.
+-Adding React Router for its ease of use and convenience.
+-About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a post request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -11,8 +22,10 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `npm server`
+
+Runs a simple local server to be able to better see changes in the UI, in port 3001.
+Remember that unless you run this command along npm start, the page will throw not found errors.
 
 ### `npm test`
 
