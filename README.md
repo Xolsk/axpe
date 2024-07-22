@@ -7,8 +7,8 @@ mean doing everything from scratch, as many things should be improved
 
 -Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met. For example, handling of what might be stale data.
 -Adding React Router for its ease of use and convenience.
--About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a post request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally.
--In the same vein, for the sake of simplicity, the "Meetup" component has been genealised to be able to hold different lists, according to different possible filters. Of course if the page required further customising another layer could be made, but I believe that for now it was unnecessary.
+-About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a put request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally.
+-In the same vein, for the sake of simplicity, the "Meetup" component has been generalised to be able to hold different lists, according to different possible filters. This filter could be improved to work not only with booleans, of course, by improving the prop filterBy to hold both the key and the expected value. Of course if the page required further customising another layer could be made, but I believe that for now it was unnecessary.
 
 # Getting Started with Create React App
 
