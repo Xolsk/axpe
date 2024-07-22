@@ -51,6 +51,7 @@ function MeetupItem(props) {
           </button>
         </div>
         {error && <div>something went wrong favoriting, please try</div>}
+        {isLoading && <div>loading...</div>}
       </Card>
     </li>
   );

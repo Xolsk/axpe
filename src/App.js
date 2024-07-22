@@ -1,4 +1,4 @@
-import AllMeetupsPage from "./pages/AllMeetupsPage";
+import MeetupsPage from "./pages/MeetupsPage";
 import FavoritesPage from "./pages/Favorites";
 import NewMeetupsPage from "./pages/NewMeetup";
 import MainNavigation from "./components/layout/MainNavigation";
@@ -14,9 +14,12 @@ function App() {
           <MainNavigation />
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<AllMeetupsPage />} />
+              <Route index element={<MeetupsPage />} />
               <Route path={NEW_MEETUP_PAGE} element={<NewMeetupsPage />} />
-              <Route path={FAVORITES_PAGE} element={<FavoritesPage />} />
+              <Route
+                path={FAVORITES_PAGE}
+                element={<MeetupsPage filterBy="favorited" />}
+              />
               <Route path="*" element={<div>NOT FOUND</div>} />
             </Route>
           </Routes>

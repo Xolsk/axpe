@@ -5,7 +5,7 @@ Some notes on the approach that has been taken.
 I've opted for a "no fuss, keep it simple and straightforward" approach. This means, simple, efficient solutions that dont
 mean doing everything from scratch, as many things should be improved
 
--Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met.
+-Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met. For example, handling of what might be stale data.
 -Adding React Router for its ease of use and convenience.
 -About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a post request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally.
 
