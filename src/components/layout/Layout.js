@@ -1,10 +1,12 @@
+import classes from "./Layout.module.css";
+import { Outlet } from "react-router-dom";
 
-import classes from './Layout.module.css';
-
-export default function Layout({children}) {
+export default function Layout() {
   return (
     <div>
-      <main className={classes.main}>{children}</main>
+      <main className={classes.main}>
+        <Outlet />
+      </main>
     </div>
   );
 }
