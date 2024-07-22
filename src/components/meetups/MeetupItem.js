@@ -1,9 +1,9 @@
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useFetch } from "../../util-hooks/useFetch";
 
-export default function MeetupItem(props) {
+function MeetupItem(props) {
   const { meetupItem, refetch } = props;
   const [fetchId, setFetchId] = useState(null);
   const { data, isLoading, error } = useFetch(
@@ -50,8 +50,21 @@ export default function MeetupItem(props) {
               : "Add to favorites"}
           </button>
         </div>
-        {error && <div>something went wrong favoriting, please try again</div>}
+        {error && <div>something went wrong favoriting, please try</div>}
       </Card>
     </li>
   );
 }
+
+const areEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.meetupItem.id === nextProps.meetupItem.id &&
+    prevProps.meetupItem.favorited === nextProps.meetupItem.favorited &&
+    prevProps.meetupItem.image === nextProps.meetupItem.image &&
+    prevProps.meetupItem.title === nextProps.meetupItem.title &&
+    prevProps.meetupItem.address === nextProps.meetupItem.address &&
+    prevProps.meetupItem.description === nextProps.meetupItem.description
+  );
+};
+
+export default memo(MeetupItem, areEqual);
