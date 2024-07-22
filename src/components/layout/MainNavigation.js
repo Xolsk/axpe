@@ -6,12 +6,41 @@ import {
 import { useNavigate } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useViewContext } from "../../contexts/ViewContext";
+import { useState, useEffect } from "react";
 
 export default function MainNavigation() {
   const navigate = useNavigate();
   const { favoriteCounter } = useViewContext();
+
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY) {
+      setShowHeader(false);
+    } else {
+      setShowHeader(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <header className={classes.header} data-test="navigation-header">
+    <header
+      className={`${classes.header} ${
+        showHeader ? classes.headerVisible : classes.headerHidden
+      }`}
+      data-test="navigation-header"
+    >
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>

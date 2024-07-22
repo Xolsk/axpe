@@ -5,7 +5,7 @@ import { useViewContext } from "../contexts/ViewContext";
 import { useEffect } from "react";
 
 export default function MeetupsPage(props) {
-  const { filterBy } = props;
+  const { filterBy, title } = props;
   const { data, error, refetch } = useFetch("http://localhost:3001/meetups");
   const { updateFavoriteCounter } = useViewContext();
 
@@ -25,14 +25,22 @@ export default function MeetupsPage(props) {
       ? data.filter((item) => item[filterBy] === true)
       : data;
 
+    if (filteredData.length > 0) {
+      return (
+        <section>
+          <h1>{title}</h1>
+          <ul className={classes.list}>
+            {filteredData.map((item) => (
+              <MeetupItem meetupItem={item} key={item.id} refetch={refetch} />
+            ))}
+          </ul>
+        </section>
+      );
+    }
     return (
       <section>
-        <h1>All Meetups</h1>
-        <ul className={classes.list}>
-          {filteredData.map((item) => (
-            <MeetupItem meetupItem={item} key={item.id} refetch={refetch} />
-          ))}
-        </ul>
+        <h1>{title}</h1>
+        <ul className={classes.list}>No available meetups here!</ul>
       </section>
     );
   }

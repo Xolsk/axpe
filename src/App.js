@@ -15,11 +15,16 @@ function App() {
             <MainNavigation />
             <Routes>
               <Route path="/" element={<Layout />}>
-                <Route index element={<MeetupsPage />} />
+                <Route index element={<MeetupsPage title="All meetups" />} />
                 <Route path={NEW_MEETUP_PAGE} element={<NewMeetupsPage />} />
                 <Route
                   path={FAVORITES_PAGE}
-                  element={<MeetupsPage filterBy="favorited" />}
+                  element={
+                    <MeetupsPage
+                      filterBy="favorited"
+                      title="Favorited meetups"
+                    />
+                  }
                 />
                 <Route path="*" element={<div>NOT FOUND</div>} />
               </Route>
