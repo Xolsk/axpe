@@ -1,4 +1,4 @@
-import { useSubmit } from "../../util-hooks/useFetch";
+import { useFetch } from "../../util-hooks/useFetch";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 import { useState, useEffect } from "react";
@@ -9,20 +9,15 @@ export default function NewMeetupForm() {
   const [image, setImage] = useState("http://defaultvalue.com");
   const [description, setDescription] = useState("Description");
   const [address, setAddress] = useState("address");
-  const { data, error, submit, isLoading, clear } = useSubmit(
-    "http://localhost:3001/meetups/"
+  const { data, error, execute, isLoading, clear } = useFetch(
+    "http://localhost:3001/meetups/",
+    "POST"
   );
   const navigate = useNavigate();
 
   function submitHandler(event) {
     event.preventDefault();
-    submit({
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, image, description, address }),
-    });
+    execute({ body: JSON.stringify({ title, image, description, address }) });
   }
 
   useEffect(() => {

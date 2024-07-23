@@ -6,7 +6,7 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
       "address": "Meetupstreet 5, 12345 Meetup City",
       "description": "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-      "favorited": false
+      "favorited": true
     },
     {
       "id": "m2",
@@ -29,7 +29,8 @@
       "title": "Title",
       "image": "http://some.com",
       "description": "dvd",
-      "adress": "dv"
+      "adress": "dv",
+      "favorited": false
     },
     {
       "id": "682c",
@@ -44,6 +45,13 @@
       "image": "http://defaultvalue.com",
       "description": "Description",
       "adress": "adress"
+    },
+    {
+      "id": "56b9",
+      "title": "Title",
+      "image": "http://defaultvalue.com",
+      "description": "Description",
+      "address": "address"
     }
   ]
 }

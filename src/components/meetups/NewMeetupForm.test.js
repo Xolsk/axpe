@@ -6,10 +6,10 @@ import "@testing-library/jest-dom/extend-expect";
 
 const mockSubmit = jest.fn();
 jest.mock("../../util-hooks/useFetch", () => ({
-  useSubmit: () => ({
+  useFetch: () => ({
     data: null,
     error: null,
-    submit: mockSubmit,
+    execute: mockSubmit,
     isLoading: false,
     clear: jest.fn(),
   }),
@@ -52,7 +52,7 @@ test("renders NewMeetupForm and allows input changes", () => {
 });
 
 test("submits the form with correct data", () => {
-  const { submit } = require("../../util-hooks/useFetch").useSubmit();
+  const { submit } = require("../../util-hooks/useFetch").useFetch();
 
   render(
     <Router>
@@ -79,10 +79,6 @@ test("submits the form with correct data", () => {
 
   // Verify if submit function is called with correct data
   expect(mockSubmit).toHaveBeenCalledWith({
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({
       title: "New Title",
       image: "http://newimage.com",
