@@ -1,43 +1,60 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
-export const useFetch = (url, method = "GET") => {
+export const useFetch = (url, options = {}) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const optionsDep = JSON.stringify(options);
+
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (url !== null) {
+      fetchData();
+    }
+  }, [url, optionsDep]);
+
+  return { data, loading, error, refetch: fetchData };
+};
+
+export const useSubmit = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = useCallback(
-    async (requestOptions = {}) => {
-      setLoading(true);
-      setError(null);
+  const fetchData = async (options) => {
+    setLoading(true);
+    setError(null);
 
-      try {
-        const response = await fetch(url, {
-          method,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: requestOptions.body,
-          ...requestOptions,
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    },
-    [url, method]
-  );
-
-  useEffect(() => {
-    if (method === "GET" && url !== null && data === null) {
-      fetchData();
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-  }, [url, method, fetchData, data]);
+  };
 
   const clear = () => {
     setLoading(false);
@@ -45,5 +62,5 @@ export const useFetch = (url, method = "GET") => {
     setData(null);
   };
 
-  return { data, loading, error, execute: fetchData, clear };
+  return { data, loading, error, submit: fetchData, clear };
 };
