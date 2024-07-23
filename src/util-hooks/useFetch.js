@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const useFetch = (url, options = {}) => {
   const [data, setData] = useState(null);
@@ -6,14 +6,14 @@ export const useFetch = (url, options = {}) => {
   const [error, setError] = useState(null);
   const optionsDep = JSON.stringify(options);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(url, options);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error();
       }
       const result = await response.json();
       setData(result);
@@ -22,13 +22,13 @@ export const useFetch = (url, options = {}) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [url, options]);
 
   useEffect(() => {
-    if (url !== null) {
+    if (url !== null && data === null) {
       fetchData();
     }
-  }, [url, optionsDep]);
+  }, [url, optionsDep, data, fetchData]);
 
   return { data, loading, error, refetch: fetchData };
 };

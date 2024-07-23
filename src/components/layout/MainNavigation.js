@@ -5,7 +5,7 @@ import {
 } from "./../../utils/constants";
 import classes from "./MainNavigation.module.css";
 import { useViewContext } from "../../contexts/ViewContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 
 export default function MainNavigation() {
@@ -14,7 +14,7 @@ export default function MainNavigation() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > lastScrollY) {
@@ -24,7 +24,7 @@ export default function MainNavigation() {
     }
 
     setLastScrollY(currentScrollY);
-  };
+  }, [lastScrollY, setShowHeader]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
