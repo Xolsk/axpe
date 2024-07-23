@@ -25,7 +25,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm server`
+### `npm run server`
 
 Runs a simple local server to be able to better see changes in the UI, in port 3001.
 Remember that unless you run this command along npm start, the page will throw not found errors.
