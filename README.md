@@ -3,12 +3,14 @@
 You can follow instructions below to run the app, after installing an dependencies of course.
 Some notes on the approach that has been taken.
 I've opted for a "no fuss, keep it simple and straightforward" approach. This means, simple, efficient solutions that dont
-mean doing everything from scratch, as many things should be improved
+mean doing everything from scratch and starting adding dependencies, as many things could be improved. Libraries used, Typescript added, etc.
 
--Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met. For example, handling of what might be stale data.
+-Of course, ensuring that the API was called only once when fetching all meetups was a priority. Improving the useFetch to a more well rounded version would be a priority after all the requirements from this challenge have been met. For example, handling of what might be stale data. For now, as this looks like an interface with little or no concurrency, we opted to leave this out as priority. I'd use Tanstack React Query for this, a lib I am very much liking.
 -Adding React Router for its ease of use and convenience.
--About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a put request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally.
+-About the favoriting approach. As there were no clear instructions about it, I opted for what I believe would be the sensible approach in real life. As I see no "submit" button available, I've decided that every favoriting action implies a put request to the Backend to save the new state in the database. Thats why we added JSON server to this repository, to be able to mock this kind of behaviour locally. Remember to run it along the app!
 -In the same vein, for the sake of simplicity, the "Meetup" component has been generalised to be able to hold different lists, according to different possible filters. This filter could be improved to work not only with booleans, of course, by improving the prop filterBy to hold both the key and the expected value. Of course if the page required further customising another layer could be made, but I believe that for now it was unnecessary.
+-The form has been basic operativity
+-As you can see, in general states have been defined but not styled, as I also understant that what matters in this kind of trial is the technical aspect, not the aesthetic one.
 
 # Getting Started with Create React App
 
