@@ -23,6 +23,27 @@
       "address": "Meetupstreet 5, 12345 Meetup City",
       "description": "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
       "favorited": false
+    },
+    {
+      "id": "9bae",
+      "title": "Title",
+      "image": "http://some.com",
+      "description": "dvd",
+      "adress": "dv"
+    },
+    {
+      "id": "682c",
+      "title": "Title",
+      "image": "http://defaultvalue.com",
+      "description": "Description",
+      "adress": "adress"
+    },
+    {
+      "id": "c49e",
+      "title": "Title",
+      "image": "http://defaultvalue.com",
+      "description": "Description",
+      "adress": "adress"
     }
   ]
 }

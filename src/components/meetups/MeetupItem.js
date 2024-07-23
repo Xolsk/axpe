@@ -26,7 +26,7 @@ function MeetupItem(props) {
       refetch();
       setFetchId(null);
     }
-  }, [data]);
+  }, [data, refetch]);
 
   return (
     <li className={classes.item} data-test="meet-up-item">

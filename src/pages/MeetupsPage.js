@@ -15,7 +15,7 @@ export default function MeetupsPage(props) {
         data.filter((item) => item.favorited === true).length
       );
     }
-  }, [data]);
+  }, [data, updateFavoriteCounter]);
 
   if (error) {
     return <p>Oops something went wrong</p>;

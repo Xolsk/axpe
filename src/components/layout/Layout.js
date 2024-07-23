@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export default function Layout() {
   return (
-    <div>
+    <div data-testid="layout">
       <main className={classes.main}>
         <Outlet />
       </main>
