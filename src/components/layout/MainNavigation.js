@@ -3,13 +3,12 @@ import {
   FAVORITES_PAGE,
   NEW_MEETUP_PAGE,
 } from "./../../utils/constants";
-import { useNavigate } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useViewContext } from "../../contexts/ViewContext";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function MainNavigation() {
-  const navigate = useNavigate();
   const { favoriteCounter } = useViewContext();
 
   const [showHeader, setShowHeader] = useState(true);
@@ -45,21 +44,17 @@ export default function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => navigate(ALL_MEETUP_PAGE)}>
-              All Meetups
-            </a>
+            <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
 
           <li>
-            <a href="#" onClick={() => navigate(NEW_MEETUP_PAGE)}>
-              Add New Meetup
-            </a>
+            <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
           </li>
           <li>
-            <a href="#" onClick={() => navigate(FAVORITES_PAGE)}>
+            <Link to={FAVORITES_PAGE}>
               My Favorites
               <span className={classes.badge}>{favoriteCounter}</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
