@@ -6,6 +6,8 @@ import { useFetch } from "../../util-hooks/useFetch";
 function MeetupItem(props) {
   const { meetupItem, refetch } = props;
   const [fetchId, setFetchId] = useState(null);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
   const { data, isLoading, error } = useFetch(
     fetchId !== null ? `http://localhost:3001/meetups/${fetchId}` : null,
     {
@@ -17,10 +19,6 @@ function MeetupItem(props) {
     }
   );
 
-  const handleFavoriting = () => {
-    setFetchId(meetupItem.id);
-  };
-
   useEffect(() => {
     if (data !== null) {
       refetch();
@@ -28,11 +26,32 @@ function MeetupItem(props) {
     }
   }, [data, refetch]);
 
+  const handleFavoriting = () => {
+    setFetchId(meetupItem.id);
+  };
+
+  const handleImageLoaded = () => {
+    setImageLoading(false);
+  };
+
+  const handleImageError = () => {
+    setImageLoading(false);
+    setImageError(true);
+  };
+
   return (
     <li className={classes.item} data-test="meet-up-item">
       <Card>
         <div className={classes.image}>
-          <img src={meetupItem.image} alt={meetupItem.title} />
+          {imageLoading && <div className={classes.loader}>Loading...</div>}
+          {imageError && <div className={classes.error}>Image not found</div>}
+          <img
+            src={meetupItem.image}
+            alt={meetupItem.title}
+            onLoad={handleImageLoaded}
+            onError={handleImageError}
+            className={imageLoading || imageError ? classes.hiddenImage : ""}
+          />
         </div>
         <div className={classes.content}>
           <h3>{meetupItem.title}</h3>
