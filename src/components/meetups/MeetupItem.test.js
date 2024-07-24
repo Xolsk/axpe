@@ -46,6 +46,7 @@ describe("MeetupItem", () => {
       isLoading: false,
       error: null,
       refetch: jest.fn(),
+      clear: jest.fn(),
     });
 
     render(<MeetupItem meetupItem={mockMeetupItem} refetch={mockRefetch} />);
@@ -75,6 +76,7 @@ describe("MeetupItem", () => {
       isLoading: true,
       error: null,
       refetch: jest.fn(),
+      clear: jest.fn(),
     });
 
     render(<MeetupItem meetupItem={mockMeetupItem} refetch={mockRefetch} />);
