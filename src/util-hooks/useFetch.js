@@ -25,10 +25,11 @@ export const useFetch = (url, options = {}) => {
   }, [url, options]);
 
   useEffect(() => {
-    if (url !== null && data === null) {
+    if (url !== null) {
       fetchData();
     }
-  }, [url, optionsDep, data, fetchData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
   return { data, loading, error, refetch: fetchData };
 };

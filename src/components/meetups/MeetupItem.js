@@ -21,12 +21,14 @@ function MeetupItem(props) {
 
   useEffect(() => {
     if (data !== null) {
+      console.log(data);
       refetch();
       setFetchId(null);
     }
   }, [data, refetch]);
 
   const handleFavoriting = () => {
+    console.log("WTF");
     setFetchId(meetupItem.id);
   };
 
