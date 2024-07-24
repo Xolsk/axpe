@@ -3,35 +3,42 @@ import {
   FAVORITES_PAGE,
   NEW_MEETUP_PAGE,
 } from "./../../utils/constants";
-import classes from "./MainNavigation.module.css";
+import classes from "./MainNavigation.module.css"; // Assuming you have CSS Modules enabled
 import { useViewContext } from "../../contexts/ViewContext";
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 
 export default function MainNavigation() {
   const { favoriteCounter } = useViewContext();
 
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > lastScrollY) {
       setShowHeader(false);
+      setMenuOpen(false);
     } else {
       setShowHeader(true);
     }
 
     setLastScrollY(currentScrollY);
-  }, [lastScrollY, setShowHeader]);
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY, handleScroll]);
+  }, [handleScroll]);
+
+  const toggleMenu = () => {
+    setMenuOpen((prevMenuOpen) => !prevMenuOpen);
+  };
 
   return (
     <header
@@ -41,12 +48,12 @@ export default function MainNavigation() {
       data-test="navigation-header"
     >
       <div className={classes.logo}>React Meetups</div>
-      <nav>
+      <FaBars className={classes.burgerIcon} onClick={toggleMenu} />
+      <nav className={`${classes.nav} ${menuOpen ? classes.open : ""}`}>
         <ul>
           <li>
             <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
-
           <li>
             <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
           </li>

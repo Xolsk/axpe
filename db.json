@@ -6,7 +6,7 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
       "address": "Meetupstreet 5, 12345 Meetup City",
       "description": "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-      "favorited": false
+      "favorited": true
     },
     {
       "id": "m2",
@@ -14,7 +14,7 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg",
       "address": "Meetupstreet 5, 12345 Meetup City",
       "description": "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-      "favorited": false
+      "favorited": true
     },
     {
       "id": "m3",
@@ -22,7 +22,7 @@
       "image": "https://www.deutschakademie.de/muenchen/blog/wp-content/uploads/2021/03/Mu%CC%88nchen-Alemania.jpg",
       "address": "Meetupstreet 5, 12345 Meetup City",
       "description": "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-      "favorited": false
+      "favorited": true
     },
     {
       "id": "9bae",
