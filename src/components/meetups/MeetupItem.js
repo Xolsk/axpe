@@ -8,7 +8,7 @@ function MeetupItem(props) {
   const [fetchId, setFetchId] = useState(null);
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
-  const { data, isLoading, error } = useFetch(
+  const { data, isLoading, error, clear } = useFetch(
     fetchId !== null ? `http://localhost:3001/meetups/${fetchId}` : null,
     {
       method: "PUT",
@@ -21,14 +21,13 @@ function MeetupItem(props) {
 
   useEffect(() => {
     if (data !== null) {
-      console.log(data);
       refetch();
+      clear();
       setFetchId(null);
     }
   }, [data, refetch]);
 
   const handleFavoriting = () => {
-    console.log("WTF");
     setFetchId(meetupItem.id);
   };
 

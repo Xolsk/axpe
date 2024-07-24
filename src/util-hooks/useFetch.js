@@ -25,13 +25,18 @@ export const useFetch = (url, options = {}) => {
   }, [url, options]);
 
   useEffect(() => {
-    if (url !== null) {
+    if (url !== null && data === null) {
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, [url, optionsDep, data, fetchData]);
 
-  return { data, loading, error, refetch: fetchData };
+  const clear = () => {
+    setLoading(false);
+    setError(null);
+    setData(null);
+  };
+
+  return { data, loading, error, refetch: fetchData, clear };
 };
 
 export const useSubmit = (url) => {
